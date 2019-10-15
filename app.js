@@ -5,14 +5,13 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
 
-const dbConnect = require("./config/dbConnect");
+const dbConnect = require('./config/dbConnect');
 
-const ProductRoute = require();
+const ProductRoute = require('./routes/product');
 const userRoute = require();
 
 // connect to mongo
 dbConnect();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,8 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use("/product");
+app.use('/product', ProductRoute);
 app.use("/user");
 
 // catch 404 and forward to error handler
