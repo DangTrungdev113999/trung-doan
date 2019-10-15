@@ -9,7 +9,7 @@ const app = express();
 
 const dbConnect = require("./config/dbConnect");
 
-// const productRoute = require("./routes/product")
+const productRoute = require("./routes/product")
 const userRoute = require("./routes/user");
 
 // connect to mongo
@@ -36,7 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// app.use("/product", productRoute);
+app.use("/product", productRoute);
 app.use("/user", userRoute);
 
 // catch 404 and forward to error handler
