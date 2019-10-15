@@ -1,10 +1,10 @@
 const ProductService = require('../services/product')
 const router = require('express').Router()
 
-router.get('/products', ProductService.getAllProduct)
-router.get('/product/:uid', ProductService.getProductId)
-router.post('/product', ProductService.createProduct)
-router.put('/product/:uid', ProductService.updateProduct)
-router.delete('/product/:uid', ProductService.deleteProduct)
+router.get('/', ProductService.getAllProduct)
+router.get('/:uid', ProductService.getProductId)
+router.post('/', ProductService.createProduct)
+router.put('/:uid', ProductService.updateProduct)
+router.delete('/:uid', ProductService.deleteProduct)
 
 module.exports = router

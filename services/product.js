@@ -2,61 +2,61 @@ const ProductModel = require('../models/Product')
 
 let getAllProduct = async (req, res) => {
     try {
-        let getProducts = await ProductModel.find()
-        if (!getProducts) res.json({ success: false, result: `Products not found!` })
-        res.json({ success: true, result: data })       
+        let getProducts = await ProductModel.find({}).exec()
+        if (getProducts.length) res.json({ status: true, result: getProducts })       
     }
     catch (error) {
         console.log(error)
-        res.json( {success: false, result: error })
+        res.json( {status: false, result: error })
     }
 }
 
 let getProductId = async(req, res) => {
     try {
-        let getProductId = await ProductModel.findById()
-        if (!getProductId) res.json({ success: false, result: `Products not found!` })
-        res.json({ success: true, result: data })       
+        let id = req.params.uid;
+        let getProductId = await ProductModel.findById(id).exec();
+        if (!getProductId) res.json({ status: false, result: `Products not found!` })
+        res.json({ status: true, result: getProductId })  
     }
     catch (error) {
         console.log(error)
-        res.json( {success: false, result: error })
+        res.json( {status: false, result: error });
     }
 }
 
 let createProduct = async (req, res) => {
     try {
-        let product = new ProductModel({
+        let product = {
             name: req.body.name,
             price: req.body.price
-        })
-        let saveProduct = await product.save()
-        res.json({ success: true, result: saveProduct })
+        };
+        let saveProduct = await ProductModel.create(product)
+        res.json({ status: true, result: saveProduct })
     } catch (error) {
         console.log(error)
-        res.json({ success: false, result: error })
+        res.json({ status: false, result: error })
     }
 }
 
 let updateProduct = async (req, res) => {
     try {
-        let updateProduct = await ProductModel.update({ _id: req.body._id }, req.body)
-        if (!updateProduct) res.json({ success: false, result: `User is not found!` })
+        let updateProduct = await ProductModel.update({ _id: req.params.uid }, { name: req.body.name, price: req.body.price}).exec()
+        if (!updateProduct) res.json({ status: false, result: `User is not found!` })
         res.json(updateProduct)
     } catch (error) {
         console.log(error)
-        res.json({ success: false, result: error })
+        res.json({ status: false, result: error })
     }
 }
 
 let deleteProduct = async (req, res) => {
     try {
-        let deleteProduct = await ProductModel.findByIdAndDelete({ _id: req.body._id })
-        if (!deleteProduct) res.json({ success: false, result: `User is not found!` })
-        res.json({ success: true, result: deleteProduct })
+        let deleteProduct = await ProductModel.findByIdAndDelete({ _id: req.params.uid}, {}).exec()
+        if (!deleteProduct) res.json({ status: false, result: `User is not found!` });
+        res.json({ status: true, result: deleteProduct })
     } catch (error) {
         console.log(error)
-        res.json({ success: false, result: error })
+        res.json({ status: false, result: error })
     }
 }
 

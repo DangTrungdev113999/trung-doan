@@ -8,7 +8,7 @@ const app = express();
 const dbConnect = require('./config/dbConnect');
 
 const ProductRoute = require('./routes/product');
-const userRoute = require();
+// const userRoute = require();
 
 // connect to mongo
 dbConnect();
@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/product', ProductRoute);
-app.use("/user");
+// app.use("/user", function(req, res, next){});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
