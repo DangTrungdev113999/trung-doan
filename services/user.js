@@ -15,10 +15,11 @@ let postLogin = async (username, password) => {
         password
       }, {password: 0}).exec();
 
-      if (user.length) {
+      console.log(user);
+      if (user) {
         const privateKey = fs.readFileSync(path.join(__dirname, "../key.pem"));
-        const token = jwt.sign(user, privateKey, { algorithm: 'RS256'});    
-        resolve(token)
+        const token = jwt.sign({user}, privateKey, { algorithm: 'RS256'});    
+        resolve(token);
       }
     } catch (error) {
       console.log(error)
