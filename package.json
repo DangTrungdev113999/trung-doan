@@ -6,7 +6,10 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+<<<<<<< HEAD
     "body-parser": "^1.19.0",
+=======
+>>>>>>> bc678d89a0f87a01561fc345fed654d94d8b5aba
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
