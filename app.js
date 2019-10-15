@@ -7,8 +7,8 @@ const app = express();
 
 const dbConnect = require("./config/dbConnect");
 
-const ProductRoute = require();
-const userRoute = require();
+
+const userRoute = require("./routes/user");
 
 // connect to mongo
 dbConnect();
