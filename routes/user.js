@@ -24,7 +24,6 @@ router.post("/login", async function(req, res) {
         username: req.body.username,
         password:  req.body.password
       }, {password: 0}).exec();
-
       req.session.user = user;
 
       return res.status(200).send(token);
