@@ -28,7 +28,7 @@ let postLogin = async (username, password) => {
 }
 
 let logout = async (req, res) => {
-  res.session.user = null;
+  req.session.user = null;
   res.redirect("/user/login");
 }
 

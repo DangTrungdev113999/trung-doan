@@ -31,7 +31,7 @@ let createProduct = async (req, res) => {
          name: req.body.name,
          price: req.body.price
       };
-      let saveProduct = await ProductModel.create(product);
+      await ProductModel.create(product);
       res.redirect('/product')
    } catch (error) {
       console.log(error);
