@@ -1,0 +1,18 @@
+extends ../layout/common
+
+block content
+
+  br
+  h1.text-center 
+    mark Add Product
+
+  form(action='/product' method='POST')
+    br
+    .form-row
+      .col-7
+      input.form-control(name='name' type='text' placeholder='Product Name')
+      .col
+      br
+      input.form-control(name='price' type='text' placeholder='Price')
+    br
+    button.btn.btn-primary(type='submit') Add Product

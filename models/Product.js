@@ -18,6 +18,6 @@ const ProductSchema = new Schema({
   // deletedAt: {  type: Number, default: null  }
 })   // collecyion: "..." not change name collection
 
-const Product  = mongoose.model("product", ProductSchema);
+const Product  = mongoose.model('product', ProductSchema);
 
 module.exports = Product;
