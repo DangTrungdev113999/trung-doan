@@ -1,0 +1,22 @@
+extends ../layout/common
+
+block content
+
+   br
+   h1 
+      mark Product Detail
+   br
+   br
+
+   p 
+      b Product Name:
+      span= product.name
+      br
+      br
+      b Product Price:
+      span= product.price
+   
+   br
+   a.btn.btn-info(href='/product/') Back To Products
+
+

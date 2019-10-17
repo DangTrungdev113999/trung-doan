@@ -1,0 +1,25 @@
+extends ../layout/common
+
+block content
+
+  br
+  h1.text-center
+    mark List Products
+  br
+  table.table
+    tr
+      th #
+      th Name
+      th Price
+      th Action
+    if products
+      each product, i in products
+        tr(data-pid=`_${product._id}`)
+          td= i + 1
+          td= product.name
+          td= product.price
+          td
+            a.btn.btn-primary(href=`/product/${product._id}`) View
+            a.btn.btn-warning.ml-1(href=`/product/editProduct/${product._id}`) Edit
+            a.btn.btn-danger.ml-1.delete-product(onclick="return confirm('Are you sure you want to delete this item?');" data-pid=`${product._id}`) Delete
+  a.btn.btn-success(href='/product/createProduct') Add Product

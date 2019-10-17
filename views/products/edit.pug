@@ -1,0 +1,18 @@
+extends ../layout/common
+
+block content
+
+   br
+   h1.text-center 
+      mark Update Product
+
+   form
+      br
+      .form-row
+         .col-7
+         input.form-control.update-name(name='name' type='text' value=`${product.name}`)
+         .col
+         br
+         input.form-control.update-price(name='price' type='text' value=`${product.price}`)
+      br
+      button.btn.btn-primary.update-product(type='button' data-pid=`${product._id}`) Update Product
