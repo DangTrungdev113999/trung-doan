@@ -4,7 +4,7 @@ const fs = require("fs");
 const User = require("./../models/User");
 
 let getlogin = async (req, res) => {
-  res.redirect();
+  res.render("user/login");  
 }
 
 let postLogin = async (username, password) => {
@@ -14,8 +14,7 @@ let postLogin = async (username, password) => {
         username, 
         password
       }, {password: 0}).exec();
-
-      console.log(user);
+      
       if (user) {
         const privateKey = fs.readFileSync(path.join(__dirname, "../key.pem"));
         const token = jwt.sign({user}, privateKey, { algorithm: 'RS256'});    
