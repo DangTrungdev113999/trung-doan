@@ -9,7 +9,8 @@ router.get("/login", user.getlogin)
 router.post("/create", async function(req, res) {
   let newUser = {
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    type: req.body.type,
   }
 
   let user = await User.create(newUser);

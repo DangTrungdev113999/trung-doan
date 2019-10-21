@@ -3,7 +3,7 @@ function updateProduct() {
       let pid = $(this).data("pid");
       let name =  $('.update-name').val();
       let price = $('.update-price').val();
-      
+      let token = localStorage.getItem("token");
       $.ajax({
          type: `PUT`,
          url: `/product/${pid}`,
@@ -11,12 +11,17 @@ function updateProduct() {
             name,
             price
          },
+         headers: {
+            token
+         },
          success: response => {
-            console.log(response)
             alert('Update Successfully!')
             window.location.href = '/product'
          },
-         error: err => console.log(err)
+         error: err => {
+            console.log(err);
+            alert(err.responseJSON.message);
+         }
       });
    });
 }

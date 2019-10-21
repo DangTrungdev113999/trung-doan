@@ -5,6 +5,7 @@ const UserSchema = new Schema({
   password: String,
   phone: {type: Number, default: null},
   address: {type: String, default: null},
+  type: {type: Number, default: 3},
   createdAt: { type: Number, default: Date.now },
   updatedAt: { type: Number, default: null },
   deletedAt: {  type: Number, default: null  }

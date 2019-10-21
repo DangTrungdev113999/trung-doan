@@ -10,15 +10,11 @@ function login() {
         password
       }
     }, function(data) {
-      console.log(data);
       localStorage.setItem("token", data);
       window.location.href = "http://localhost:3000/product";
     })
   })
 }
-
-
-
 
 $(document).ready(function() {
   login()

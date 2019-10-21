@@ -4,12 +4,17 @@ $(document).ready(() => {
       $.ajax({
          type: `DELETE`,
          url: `/product/ ${pid}`,
+         headers: {
+            token: localStorage.getItem("token")
+         },
          success: (response) => {
             if (response.status === true) {
                $("table").find(`tr[data-pid='_${pid}']`).remove();
             }
          },
-         error: (err) => console.log(err)
+         error: (err) => {
+            alert(err.responseJSON.message);
+         }
       })
    })
 })
