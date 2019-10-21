@@ -10,24 +10,32 @@ let getAllProduct = async (req, res) => {
       let numberOfPages = Math.floor(numberOfProduct/2);
       if (page >= numberOfPages) {
          page = numberOfPages;
-      }
+      };
+
+      let name = req.session.user.username;
 
       let products = await ProductModel.find({}).skip(start).limit(perPage).exec();
       if (products.length) {
-         return res.render('products/listProduct', { products, numberOfPages, page });
+         return res.render('products/listProduct', { products, numberOfPages, page , name});
       }
-      return res.render('products/listProduct', { numberOfPages, page });
+      return res.render('products/listProduct', { numberOfPages, page , name});
    } catch (error) {
       console.log(error);
    }
 };
+
+let getCreateProduct = (req, res) => {
+   let name = req.session.user.username;
+   res.render('products/createProduct', { name });
+}
 
 let getProductId = async (req, res) => {
    try {
       let id = req.params.uid;
       let product = await ProductModel.findById(id).exec();
       if (product.name){
-         res.render('products/viewProduct', { product })
+         let name = req.session.user.username;
+         res.render('products/viewProduct', { product, name })
       }
    } catch (error) {
       console.log(error);
@@ -51,16 +59,12 @@ let createProduct = async (req, res) => {
 let getUpdateProduct = async (req, res) => {
    let pid = req.params.pid;
    let product =  await ProductModel.findById(pid).exec();
-
-   res.render("products/edit" , {product})
+   let name = req.session.user.username;
+   res.render("products/edit" , {product, name})
 }
 
 let updateProduct = async (req, res) => {
    try {
-      let product = {
-         name: req.body.name, 
-         price: req.body.price
-      }
       let result = await ProductModel.update({ _id: req.params.pid}, { name: req.body.name,  price: req.body.price}).exec();
       if (result.n === 1) {
       return res.status(200).json({
@@ -98,5 +102,6 @@ module.exports = {
    createProduct,
    updateProduct,
    deleteProduct,
-   getUpdateProduct
+   getUpdateProduct,
+   getCreateProduct,
 };

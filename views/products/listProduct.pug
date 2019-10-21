@@ -27,7 +27,7 @@ block content
 
   -var n = 1;
   if numberOfPages
-    nav.mt-3(aria-label='Page navigation example')
+    nav.mt-5.float-right(aria-label='Page navigation example')
       ul.pagination
         li.page-item  
           a.page-link(href=`/product?page=${(page-1 < 0 ? 0 : page - 1)}` aria-label='Previous')

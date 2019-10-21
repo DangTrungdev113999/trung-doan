@@ -3,17 +3,21 @@ html
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
-      a.navbar-brand(href='#') Product
-      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+      a.navbar-brand(href='https://www.nodemy.vn/') Product
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarText', aria-controls='navbarText', aria-expanded='false', aria-label='Toggle navigation')
         span.navbar-toggler-icon
-      #navbarNav.collapse.navbar-collapse
-        ul.navbar-nav
+      #navbarText.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href='https://www.nodemy.vn/')
+              | Home 
+              span.sr-only (current)
           li.nav-item
-            a.nav-link(href='/home') Home 
-          li.nav-item
-            a.nav-link(href='/product') List Product
-          li.nav-item
-            a.nav-link(href='/user/logout') logout
+            a.nav-link(href='/product') List Products
+        span hello &nbsp;
+          b.text-uppercase= name
+        span.navbar-text
+          a.nav-link(href='/user/logout') Logout
 
     .container
       block content

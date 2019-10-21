@@ -4,9 +4,7 @@ const router = require('express').Router();
 
 const auth = require("./../middleware/auth");
 
-router.get('/createProduct',auth.checklogin, (req, res) => {
-    res.render('products/createProduct');
-})
+router.get('/createProduct',auth.checklogin, ProductService.getCreateProduct)
 router.get('/editProduct/:pid',auth.checklogin, ProductService.getUpdateProduct);
 router.get('/',auth.checklogin, ProductService.getAllProduct);
 router.get('/:uid',auth.checklogin, ProductService.getProductId);

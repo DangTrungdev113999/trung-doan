@@ -16,9 +16,6 @@ function login() {
   })
 }
 
-
-
-
 $(document).ready(function() {
   login()
 })

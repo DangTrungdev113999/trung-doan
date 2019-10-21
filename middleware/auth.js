@@ -2,8 +2,6 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 const fs = require("fs");
 
-
-
 let checklogin = (req, res, next) => {
   if (req.session.user) {
     return  next();
@@ -30,31 +28,25 @@ let checkToken = (req, res, next) => {
   }
 }
 
-
 let checkOuthAdim = (req, res, next) => {
-  console.log(res.user)
   if(res.user.type === 1) {
     return  next();
   }
   return res.status(403).send({
     status: false,
-    message: "You don't have Forbidden"
+    message: "You don't have Permission!"
   })
 }
 
 let checkOuthMannager = (req, res, next) => {
-  console.log(res.user)
   if(res.user.type <= 2) {
     return  next();
   }
   return res.status(403).send({
     status: false,
-    message: "You don't have Forbidden"
+    message: "You don't have Permission!"
   })
 }
-
-
-
 
 module.exports = {
   checklogin,
