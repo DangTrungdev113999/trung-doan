@@ -22,4 +22,21 @@ block content
             a.btn.btn-primary(href=`/product/${product._id}`) View
             a.btn.btn-warning.ml-1(href=`/product/editProduct/${product._id}`) Edit
             a.btn.btn-danger.ml-1.delete-product(onclick="return confirm('Are you sure you want to delete this item?');" data-pid=`${product._id}`) Delete
+  
   a.btn.btn-success(href='/product/createProduct') Add Product
+
+  -var n = 1;
+  if numberOfPages
+    nav.mt-3(aria-label='Page navigation example')
+      ul.pagination
+        li.page-item  
+          a.page-link(href=`/product?page=${(page-1 < 0 ? 0 : page - 1)}` aria-label='Previous')
+            span(aria-hidden='true') &laquo;
+          while n <= numberOfPages
+            li.page-item  
+              a.page-link(href=`/product?page=${n}`)= n++
+        li.page-item
+          a.page-link(href=`/product?page=${page+1}` aria-label='Next')
+            span(aria-hidden='true') &raquo;
+
+

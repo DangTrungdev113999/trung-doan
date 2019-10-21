@@ -2,11 +2,21 @@ const ProductModel = require("../models/Product");
 
 let getAllProduct = async (req, res) => {
    try {
-      let products = await ProductModel.find({}).exec();
-      if (products.length) {
-         return res.render('products/listProduct', { products });
+      let page = +req.query.page  || 0;
+      if (page <= 0) page = 0;
+      let perPage = 2;
+      let start = page * perPage ;
+      let numberOfProduct = await ProductModel.count();
+      let numberOfPages = Math.floor(numberOfProduct/2);
+      if (page >= numberOfPages) {
+         page = numberOfPages;
       }
-      return res.render('products/listProduct' );
+
+      let products = await ProductModel.find({}).skip(start).limit(perPage).exec();
+      if (products.length) {
+         return res.render('products/listProduct', { products, numberOfPages, page });
+      }
+      return res.render('products/listProduct', { numberOfPages, page });
    } catch (error) {
       console.log(error);
    }
