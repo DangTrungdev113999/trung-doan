@@ -10,8 +10,9 @@ const app = express();
 
 const dbConnect = require("./config/dbConnect");
 
-const productRoute = require("./routes/product")
+const productRoute = require("./routes/product");
 const userRoute = require("./routes/user");
+const authRoute = require("./routes/auth");
 
 // connect to mongo
 dbConnect();
@@ -87,6 +88,7 @@ app.get("/data-generation", async (req, res) => {
 
 app.use("/product", productRoute);
 app.use("/user", userRoute);
+app.use("/auth", authRoute);
 
 app.use(function(req, res, next) {
   next(createError(404));

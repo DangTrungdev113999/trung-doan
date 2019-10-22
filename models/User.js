@@ -6,6 +6,11 @@ const UserSchema = new Schema({
   phone: {type: Number, default: null},
   address: {type: String, default: null},
   type: {type: Number, default: 3},
+  facebook: {
+    uid: {type: String},
+    email: { type: String , trim: true},
+    token: { type: String }
+  },
   createdAt: { type: Number, default: Date.now },
   updatedAt: { type: Number, default: null },
   deletedAt: {  type: Number, default: null  }
