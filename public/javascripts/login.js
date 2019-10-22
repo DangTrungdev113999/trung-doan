@@ -11,7 +11,7 @@ function login() {
       }
     }, function(data) {
       localStorage.setItem("token", data);
-      window.location.href = "http://localhost:3000/product";
+      window.location.href = "/product";
     })
   })
 }
